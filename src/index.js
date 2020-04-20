@@ -8,8 +8,8 @@ import {
     Vector3
 } from "@babylonjs/core/Maths/math";
 import {
-    FreeCamera
-} from "@babylonjs/core/Cameras/freeCamera";
+    UniversalCamera
+} from "@babylonjs/core/Cameras/universalCamera";
 import {
     HemisphericLight
 } from "@babylonjs/core/Lights/hemisphericLight";
@@ -34,11 +34,16 @@ var engine = new Engine(canvas, true);
 // BABYLON Scene creation
 var scene = new Scene(engine);
 
-// The camera, necessary see the world
-var camera = new FreeCamera("camera", new Vector3(0, 5, -25), scene);
+// The camera, necessary see the world. UniversalCamera replaced FreeCamera since Babylon 2.3
+var camera = new UniversalCamera("camera", new Vector3(0, 5, -25), scene);
 camera.setTarget(Vector3.Zero());
+
+//Attach camera to the canvas
+camera.attachControl(canvas,true)
+
 // The ambient light
 var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+
 
 // The cube
 const cubes = [];
