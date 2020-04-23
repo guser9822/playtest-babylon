@@ -5,7 +5,7 @@ import {
     Scene
 } from "@babylonjs/core/scene";
 import {
-    Vector3
+    Vector3, Color3
 } from "@babylonjs/core/Maths/math";
 import {
     UniversalCamera
@@ -52,7 +52,29 @@ scene.debugLayer.show();
 
 //Add pointer down event
 scene.onPointerDown = (evt, pickInfo) => {
-    console.log('What : ', evt, pickInfo)
+
+    if (!pickInfo.hit) {
+        return;
+    }
+
+    const { distance, pickedPoint, pickedMesh, bu, bv } = pickInfo;
+    console.log('______onMouseDown___________________| 0 |');
+    console.log(`Distance ${distance}`);
+    console.log(`PickedPoint `, pickedPoint);
+    console.log(`PickedMesh `, pickedMesh);
+    console.log(`bu ${bu}`);
+    console.log(`bv ${bv}`);
+
+    //Outline mesh
+    if (pickedMesh.renderOutline) {
+        pickedMesh.renderOutline = false;
+    } else {
+        pickedMesh.renderOutline = true;
+        pickedMesh.outlineWidth = .1;
+        pickedMesh.outlineColor = Color3.Yellow();
+    }
+
+    console.log('_________________________________________|');
 }
 
 // The render loop
