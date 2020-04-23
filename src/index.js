@@ -47,9 +47,13 @@ camera.attachControl(canvas, true);
 var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
 
 // The cube
-var cube = Mesh.CreateBox("myBox", 1, scene);
+var cube = Mesh.CreateBox("theBox", 1, scene);
 scene.debugLayer.show();
 
+//Add pointer down event
+scene.onPointerDown = (evt, pickInfo) => {
+    console.log('What : ', evt, pickInfo)
+}
 
 // The render loop
 engine.runRenderLoop(function () {
