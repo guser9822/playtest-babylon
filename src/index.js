@@ -63,10 +63,10 @@ scene.onPointerDown = (evt, pickInfo) => {
     const { distance, pickedPoint, pickedMesh, bu, bv } = pickInfo;
     console.log('______onMouseDown___________________| 0 |');
     console.log(`Distance ${distance}`);
-    console.log(`PickedPoint `, pickedPoint);
+    console.log(`PickedPoint 3D `, pickedPoint);
     const pickedPoint2D = coords3Dto2D(scene, pickedPoint, canvas);
-    console.log('To 3D : ', coords2Dto3D(pickedPoint2D,camera, canvas))
-    console.log(`PickedPoint2D `, pickedPoint2D);
+    //console.log('To 3D : ', coords2Dto3D(pickedPoint2D,camera, canvas))
+    console.log(`PickedPoint 2D `, pickedPoint2D);
     console.log(`PickedMesh `, pickedMesh);
     console.log(`bu ${bu}`);
     console.log(`bv ${bv}`);
