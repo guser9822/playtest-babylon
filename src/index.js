@@ -5,7 +5,7 @@ import {
     Scene
 } from "@babylonjs/core/scene";
 import {
-    Vector3, Color3
+    Vector3, Color3, Matrix
 } from "@babylonjs/core/Maths/math";
 import {
     UniversalCamera
@@ -31,9 +31,14 @@ import "@babylonjs/core/Debug/debugLayer";
 // Injects a local ES6 version of the inspector to prevent automatically relying on the none compatible version
 import "@babylonjs/inspector";
 
+import {toggleLabel, coords3Dto2D} from '../src/utils'
+
 // BABYLON Engine creation
 var canvas = document.getElementById('gameCanvas');
 var engine = new Engine(canvas, true);
+
+//Activate debug layer
+//scene.debugLayer.show();
 
 // BABYLON Scene creation
 var scene = new Scene(engine);
@@ -47,20 +52,20 @@ camera.attachControl(canvas, true);
 var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
 
 // The cube
-var cube = Mesh.CreateBox("theBox", 1, scene);
-scene.debugLayer.show();
-
+var cube = Mesh.CreateBox("Cube 1", 1, scene);
 //Add pointer down event
 scene.onPointerDown = (evt, pickInfo) => {
 
     if (!pickInfo.hit) {
         return;
     }
-
+    
     const { distance, pickedPoint, pickedMesh, bu, bv } = pickInfo;
     console.log('______onMouseDown___________________| 0 |');
     console.log(`Distance ${distance}`);
     console.log(`PickedPoint `, pickedPoint);
+    const pickedPoint2D = coords3Dto2D(scene, pickedPoint, canvas);
+    console.log(`PickedPoint2D `, pickedPoint2D);
     console.log(`PickedMesh `, pickedMesh);
     console.log(`bu ${bu}`);
     console.log(`bv ${bv}`);
@@ -68,10 +73,12 @@ scene.onPointerDown = (evt, pickInfo) => {
     //Outline mesh
     if (pickedMesh.renderOutline) {
         pickedMesh.renderOutline = false;
+        toggleLabel(pickedMesh.id, document, false);
     } else {
         pickedMesh.renderOutline = true;
         pickedMesh.outlineWidth = .1;
         pickedMesh.outlineColor = Color3.Yellow();
+        toggleLabel(pickedMesh.id,document, true, pickedPoint2D);
     }
 
     console.log('_________________________________________|');
