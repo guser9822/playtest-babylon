@@ -16,14 +16,25 @@ export function toggleLabel(id, document, toggle, pickedPoint2D) {
         var newContent = document.createTextNode(`${id}`);
         // add the text node to the newly created div
         newDiv.appendChild(newContent);
-        console.log('objLabel_CSS ', Css.of(objLabel_CSS))
-        newDiv.setAttribute('style', `position: fixed;background-color: red;top: ${pickedPoint2D.y}px;left: ${pickedPoint2D.x}px;`);
+        const style = createLabeLstyle(objLabel_CSS, pickedPoint2D)
+        newDiv.setAttribute('style',style);
         document.body.appendChild(newDiv);
 
     } else {
         document.getElementById(`${id}`).remove();
     }
 
+}
+
+export function createLabeLstyle(jsonDef, pickedPoint2D){
+
+    jsonDef.definition.top = Math.round(pickedPoint2D.y)+'px';
+    jsonDef.definition.left = Math.round(pickedPoint2D.x)+'px';
+
+    const fullStyle = Css.of(jsonDef);
+    const start = fullStyle.split('{')[1];
+    const style = start.split('}')[0];
+    return style;
 }
 
 export function coords3Dto2D(scene, pos3D, canvas) {
