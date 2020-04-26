@@ -17,7 +17,7 @@ export function toggleLabel(id, document, toggle, pickedPoint2D) {
         // add the text node to the newly created div
         newDiv.appendChild(newContent);
         const style = createLabeLstyle(objLabel_CSS, pickedPoint2D)
-        newDiv.setAttribute('style',style);
+        newDiv.setAttribute('style', style);
         document.body.appendChild(newDiv);
 
     } else {
@@ -26,10 +26,10 @@ export function toggleLabel(id, document, toggle, pickedPoint2D) {
 
 }
 
-export function createLabeLstyle(jsonDef, pickedPoint2D){
+export function createLabeLstyle(jsonDef, pickedPoint2D) {
 
-    jsonDef.definition.top = Math.round(pickedPoint2D.y)+'px';
-    jsonDef.definition.left = Math.round(pickedPoint2D.x)+'px';
+    jsonDef.definition.top = Math.round(pickedPoint2D.y) + 'px';
+    jsonDef.definition.left = Math.round(pickedPoint2D.x) + 'px';
 
     const fullStyle = Css.of(jsonDef);
     const start = fullStyle.split('{')[1];
@@ -38,13 +38,22 @@ export function createLabeLstyle(jsonDef, pickedPoint2D){
 }
 
 export function coords3Dto2D(scene, pos3D, canvas) {
-
-    scene.updateTransformMatrix();//necessary (not so really)
+    scene.updateTransformMatrix();//necessary
     return Vector3.Project(pos3D,
         Matrix.Identity(),
         scene.getTransformMatrix(),
         getGlobalViewport(scene, canvas)
     );
+}
+
+export function coords2Dto3D(point, camera, canvas) {
+    return Vector3.Unproject(point.clone(),
+        canvas.clientWidth,
+        canvas.clientHeight,
+        Matrix.Identity(),
+        camera.getViewMatrix(),
+        camera.getProjectionMatrix(),
+    )
 }
 
 export function getGlobalViewport(scene, canvas) {

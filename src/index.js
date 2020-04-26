@@ -31,7 +31,7 @@ import "@babylonjs/core/Debug/debugLayer";
 // Injects a local ES6 version of the inspector to prevent automatically relying on the none compatible version
 import "@babylonjs/inspector";
 
-import {toggleLabel, coords3Dto2D} from '../src/utils'
+import {toggleLabel, coords3Dto2D, coords2Dto3D} from '../src/utils'
 
 // BABYLON Engine creation
 var canvas = document.getElementById('gameCanvas');
@@ -65,6 +65,7 @@ scene.onPointerDown = (evt, pickInfo) => {
     console.log(`Distance ${distance}`);
     console.log(`PickedPoint `, pickedPoint);
     const pickedPoint2D = coords3Dto2D(scene, pickedPoint, canvas);
+    console.log('To 3D : ', coords2Dto3D(pickedPoint2D,camera, canvas))
     console.log(`PickedPoint2D `, pickedPoint2D);
     console.log(`PickedMesh `, pickedMesh);
     console.log(`bu ${bu}`);
