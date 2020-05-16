@@ -32,8 +32,7 @@ const Level = function (game) {
     }
 
     const groundMaterial = new StandardMaterial("ground", game.scene);
-    console.log('Full url ', 'http://localhost:8080/'+groundTexture)
-    groundMaterial.diffuseTexture = new Texture('http://localhost:8080/'+groundTexture, game.scene);
+    groundMaterial.diffuseTexture = new Texture(groundTexture, game.scene);
 
     this.gameMaterials.groundMaterial = groundMaterial;
 
