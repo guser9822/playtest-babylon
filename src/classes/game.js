@@ -29,13 +29,8 @@ import "@babylonjs/core/Debug/debugLayer";
 import "@babylonjs/inspector";
 
 //My game classes
-import GameObject from '../classes/gameObject';
-import Player from '../classes/player'
-
-//Start rendering the game when DOM is loaded
-window.addEventListener('DOMContentLoaded', () => {
-    new Game('gameCanvas');
-}, false)
+import Player from './player';
+import Level from './level';
 
 const Game = function (canvasId) {
 
@@ -48,7 +43,6 @@ const Game = function (canvasId) {
     this.level = null;
     this._initGame()
     const _this = this;
-
     this.engine.runRenderLoop(function () {
         _this.scene.render();
     })
@@ -70,13 +64,14 @@ Game.prototype._initScene = function (engine) {
     return scene;
 }
 
-Game.prototype._initScene = function () {
+Game.prototype._initGame = function () {
 
     this.player = new Player(this);
-    this.level = Level.FromInts(levels[this.currentLevel], this);
+    //this.level = Level.FromInts(levels[this.currentLevel], this);
+    this.level = Level.FromInts(Level.LEVELS, this);
     this.player.position = this.level.start.position.clone();
     this.player.position.y = 2;
-    //scene.debugLayer.show();
+    //this.scene.debugLayer.show();
 }
 
 

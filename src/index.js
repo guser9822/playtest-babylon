@@ -36,6 +36,12 @@
 //Componenets
 import Game from '../src/classes/game'
 
+//Start rendering the game when DOM is loaded
+window.addEventListener('DOMContentLoaded', () => {
+    new Game('gameCanvas');
+}, false)
+
+
 // // BABYLON Engine creation
 // var canvas = document.getElementById('gameCanvas');
 // var engine = new Engine(canvas, true);

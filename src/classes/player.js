@@ -8,6 +8,7 @@ import {
 
 import GameObject from "./gameObject";
 
+
 const Player = function (game) {
 
     GameObject.call(this, 'player', game);
@@ -30,6 +31,7 @@ const Player = function (game) {
     });
 }
 
+Player.START_HEIGHT = 1
 Player.prototype = Object.create(GameObject.prototype);
 Player.prototype.constructor = Player;
 export default Player;
