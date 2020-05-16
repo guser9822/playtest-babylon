@@ -13,6 +13,7 @@ import {
 import {
     HemisphericLight
 } from "@babylonjs/core/Lights/hemisphericLight";
+
 // import {
 //     Mesh
 // } from "@babylonjs/core/Meshes/mesh";
@@ -31,12 +32,14 @@ import "@babylonjs/inspector";
 //My game classes
 import Player from './player';
 import Level from './level';
+import GameMaterials from './materialsgen';
 
 const Game = function (canvasId) {
 
     const canvas = document.getElementById(canvasId);
     this.engine = new Engine(canvas, true);
     this.scene = this._initScene(this.engine);
+    this.gameMaterials = new GameMaterials(this.scene);
     this.assets = [];
     this.currentLevel = 1;
     this.player = null;
@@ -65,7 +68,6 @@ Game.prototype._initScene = function (engine) {
 }
 
 Game.prototype._initGame = function () {
-
     this.player = new Player(this);
     //this.level = Level.FromInts(levels[this.currentLevel], this);
     this.level = Level.FromInts(Level.LEVELS, this);

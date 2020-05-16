@@ -8,7 +8,6 @@ import {
 
 import GameObject from "./gameObject";
 
-
 const Player = function (game) {
 
     GameObject.call(this, 'player', game);
@@ -22,6 +21,8 @@ const Player = function (game) {
     //Our player geometry became a sphere
     vertexData.applyToMesh(this);
     this.position.y = Player.START_HEIGHT;
+
+    this.material = game.gameMaterials.playerMaterial;
 
     const _this = this;
     this.getScene().registerBeforeRender(function () {

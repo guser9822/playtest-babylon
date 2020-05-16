@@ -2,16 +2,8 @@ import {
     Vector3
 } from '@babylonjs/core/Maths/math';
 import {
-    StandardMaterial,
+    StandardMaterial
 } from '@babylonjs/core/Materials';
-import {
-    Texture
-} from '@babylonjs/core/Materials/Textures';
-import {
-    AssetsManager
-} from '@babylonjs/core/Misc/assetsManager';
-
-import groundTexture from '../assets/ground.jpg';
 
 import Block from "./block";
 import Key from "./key";
@@ -26,17 +18,6 @@ const Level = function (game) {
     this.keys = [];
     this.spikes = [];
     this.blocks = [];
-
-    this.gameMaterials = {
-        groundMaterial: undefined
-    }
-
-    const groundMaterial = new StandardMaterial("ground", game.scene);
-    groundMaterial.diffuseTexture = new Texture(groundTexture, game.scene);
-
-    this.gameMaterials.groundMaterial = groundMaterial;
-
-    console.log('this.gameMaterials.groundMaterial ', this.gameMaterials)
 };
 
 Level.prototype.dispose = function () {
@@ -59,8 +40,8 @@ Level.FromInts = function (matrix, game) {
             } else {
 
                 block = new Block(x, z, game);
-                block.material = level.gameMaterials.groundMaterial;
-                
+                block.material = game.gameMaterials.groundMaterial;
+
                 level.blocks.push(block);
 
                 if (type === Block.TYPES.NORMAL) {
