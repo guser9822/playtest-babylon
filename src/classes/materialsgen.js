@@ -40,7 +40,7 @@ const groundMaterialGen = function (scene) {
 }
 
 const skyBox = function (scene) {
-    const skybox = Mesh.CreateBox("skyBox", 100.0, scene);
+    const skybox = Mesh.CreateBox("skyBox", 1000.0, scene);
     const skyboxMaterial = new StandardMaterial("skyBox", scene);
     skyboxMaterial.backFaceCulling = false;
     skyboxMaterial.reflectionTexture = new CubeTexture('src/assets/skybox/SkyBoxTexture', scene);
