@@ -1,9 +1,6 @@
 import {
     Vector3
 } from '@babylonjs/core/Maths/math';
-import {
-    StandardMaterial
-} from '@babylonjs/core/Materials';
 
 import Block from "./block";
 import Key from "./key";
@@ -40,8 +37,6 @@ Level.FromInts = function (matrix, game) {
             } else {
 
                 block = new Block(x, z, game);
-                block.material = game.gameMaterials.groundMaterial;
-
                 level.blocks.push(block);
 
                 if (type === Block.TYPES.NORMAL) {

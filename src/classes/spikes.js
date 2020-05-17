@@ -12,6 +12,8 @@ const Spikes = function (game, number) {
     GameObject.call(this, 'spikes', game);
     this.sharpPart = Mesh.CreateCylinder("cylinder", 0.5, 0.5, 0.5, 6, 1, this.getScene());
     this.sharpPart.parent = this;
+    this.sharpPart.material = game.gameMaterials.spikesMaterial;
+
 };
 
 Spikes.prototype = Object.create(GameObject.prototype);

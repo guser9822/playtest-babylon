@@ -14,6 +14,7 @@ const Key = function (game, number) {
     this.spike = null;
     const key = Mesh.CreateTorus("key", 0.75, 0.25, 10, this.getScene());
     key.parent = this;
+    key.material = game.gameMaterials.keyMaterial;
 };
 
 Key.prototype = Object.create(GameObject.prototype);

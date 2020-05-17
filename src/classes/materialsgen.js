@@ -13,7 +13,10 @@ import {
     Texture, CubeTexture
 } from '@babylonjs/core/Materials/Textures';
 
-import groundTexture from '../assets/ground.jpg';
+import groundTexture from '../assets/textures/ground.jpg';
+import spikesTexture from '../assets/textures/spikesTexture.jpg';
+import appleTexture from '../assets/textures/appleTexture.jpg';
+import keyTexture from '../assets/textures/keyTexture.jpg';
 
 const playerMaterialGen = function (scene) {
     const playerMaterial = new StandardMaterial("playerMaterial", scene);
@@ -51,9 +54,30 @@ const skyBox = function (scene) {
     return skybox;
 }
 
+const spikesMaterialGen = function (scene) {
+    const spikesMaterial = new StandardMaterial("spikesMaterial", scene);
+    spikesMaterial.diffuseTexture = new Texture(spikesTexture, scene);
+    return spikesMaterial;
+}
+
+const appleMaterialGen = function (scene) {
+    const appleMaterial = new StandardMaterial("appleMaterial", scene);
+    appleMaterial.diffuseTexture = new Texture(appleTexture, scene);
+    return appleMaterial;
+}
+
+const keyMaterialGen = function (scene) {
+    const keyMaterial = new StandardMaterial("keyMaterial", scene);
+    keyMaterial.diffuseTexture = new Texture(keyTexture, scene);
+    return keyMaterial;
+}
+
 const GameMaterials = function (scene) {
     this.playerMaterial = playerMaterialGen(scene);
     this.groundMaterial = groundMaterialGen(scene);
+    this.spikesMaterial = spikesMaterialGen(scene);
+    this.appleMaterial = appleMaterialGen(scene);
+    this.keyMaterial = keyMaterialGen(scene);
     this.skyBox = skyBox(scene);
 }
 

@@ -13,6 +13,7 @@ const Apple = function (game) {
     GameObject.call(this, 'apple', game);
     const apple = Mesh.CreateTorusKnot('knot', 0.25, 0.05, 64, 64, 2, 3, this.getScene());
     apple.parent = this;
+    apple.material = game.gameMaterials.appleMaterial;
 }
 
 Apple.prototype = Object.create(GameObject.prototype);

@@ -14,6 +14,9 @@ const Block = function (x, z, game) {
     vertexData.applyToMesh(this);
     this.position.x = x;
     this.position.z = -z;
+
+    this.material = game.gameMaterials.groundMaterial;
+
 }
 
 Block.prototype = Object.create(GameObject.prototype);
